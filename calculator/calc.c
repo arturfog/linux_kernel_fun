@@ -13,14 +13,14 @@ MODULE_AUTHOR("Artur Fogiel");
 MODULE_DESCRIPTION("A simple Linux char driver that act as calcualtor");
 MODULE_VERSION("0.1");
 
-#define  DEVICE_NAME "calcchar"    ///< The device will appear at /dev/ebbchar using this value
-#define  CLASS_NAME  "calc"        ///< The device class -- this is a character device driver
+#define  DEVICE_NAME "calc"    
+#define  CLASS_NAME  "calc"    
 #define  BUFF_SIZE 256
-static int    majorNumber;                  ///< Stores the device number -- determined automatically
-static char   message[BUFF_SIZE] = {0};           ///< Memory for the string that is passed from userspace
-static short  size_of_message;              ///< Used to remember the size of the string stored
-static struct class*  ebbcharClass  = NULL; ///< The device-driver class struct pointer
-static struct device* ebbcharDevice = NULL; ///< The device-driver device struct pointer
+static int    majorNumber;                  
+static char   message[BUFF_SIZE] = {0};           
+static short  size_of_message;              
+static struct class*  ebbcharClass  = NULL; 
+static struct device* ebbcharDevice = NULL;
 static char*  msg_Ptr = NULL;
 static int    result = 0;
 
@@ -74,7 +74,7 @@ static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *of
         error_count = put_user(*(msg_Ptr++), buffer++);
         len--;
       }
-      printk(KERN_INFO "CALC: error_count %d\n", error_count);
+
       if(error_count == 0) {
          return (size_of_message);
       } else {
